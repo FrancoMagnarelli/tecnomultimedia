@@ -2,7 +2,7 @@
 
 //Comision 1
 
-//Link del video:
+//Link del video: https://www.youtube.com/watch?v=M40Bfo6Qm8A
 
 PFont texto;
 int mitad;
@@ -16,6 +16,8 @@ String [] textoCuento = {"La señora Navárrez grita durante \n toda la noche, p
 "Deciden cenar fuera \npara escapar del ruido","La situación se vuelve \ninsoportable,y los vecinos\n discuten posibles soluciones","La señora Navarréz baja a cenar\n tranquilamente y dijo que\n nada mas habia pasado por un","El señor Villanazul se ofrece\n como voluntario para\n hacer el trabajo",
 "El señor Villanazul sube las\n escaleras y abre lentamente\n la puerta de la señora Navarréz","Villanazul sin ningun tipo de\n remordimiento apreta el cuello\n de la señora hasta matarla","Por fin hubo silencio y \nlos vecinos pudieron pasar \nla noche en paz",
 "Villanazul con mucha violencia\n agarra y tira a la señora\n por la ventana"};
+
+
 void setup() {
   size (600,600);
   for (int i= 1; i < cant; i++) {
@@ -27,6 +29,7 @@ void setup() {
   stroke(80);
   mitad = width/2;
 }
+
 
 void draw(){
   background (255);
