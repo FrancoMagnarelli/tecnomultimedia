@@ -2,28 +2,11 @@
 // Comision 1 TP4
 // Link al video: https://www.youtube.com/watch?v=_Ikp6gdQnS0
 
-
-let barrY = [];
-let barrX = [];
-let barrVel = [];
-let barrY2 = [];
-let barrX2 = [];
-let barrVel2 = [];
-let barrY3 = [];
-let barrX3 = [];
-let barrVel3 = [];
-let barrY4 = [];
-let barrX4 = [];
-let barrVel4 = [];
-let barrY5 = [];
-let barrX5 = [];
-let barrVel5 = [];
-let barrY6 = [];
-let barrX6 = [];
-let barrVel6 = [];
-let barrY7 = [];
-let barrX7 = [];
-let barrVel7 = [];
+let barrilX = [];
+let barrilY = [];
+let barrilVel = [];
+let anchoBarr;
+let altoBarr;
 let fotoCorrer = [];
 let fotoCorrerA = [];
 let fotoQuieto, fotoEstrella
@@ -63,31 +46,15 @@ function setup() {
   ex4 = 230;
   ex5 = 550;
   ex6 = 120;
-  cantB = 20;
+  cantB = 30;
   segundos = 0;
   estado = 1;
-  for (let i = 0; i < cantB; i ++) {
-    barrX [i] = random (100, 700);
-    barrY [i] = random (-90, -5);
-    barrVel [i] = random (0.4, 2.3);
-    barrX2 [i] = random (100, 700);
-    barrY2 [i] = random ( -90, -5);
-    barrVel2 [i] = random (0.4, 2.3);
-    barrX3 [i] = random (100, 700);
-    barrY3 [i] = random (-90, -5);
-    barrVel3 [i] = random (0.4, 2.3);
-    barrX4 [i] = random (100, 700);
-    barrY4 [i] = random (-90, -5);
-    barrVel4 [i] = random (0.4, 2.3);
-    barrX5 [i] = random (100, 700);
-    barrY5 [i] = random (-90, -5);
-    barrVel5 [i] = random (0.4, 1.6);
-    barrX6 [i] = random (100, 700);
-    barrY6 [i] = random (-90, -5);
-    barrVel6 [i] = random (0.4, 1);
-    barrX7 [i] = random (100, 700);
-    barrY7 [i] = random (-90, -80);
-    barrVel7 [i] = random (0.2, 0.7);
+  anchoBarr = 20;
+  altoBarr = 20;
+  for (let i = 0; i < cantB; i++) {
+    barrilX [i] = i*(anchoBarr + 50);
+    barrilY [i] = random (-300, -100);
+    barrilVel [i] = random (0.5, 2);
   }
 }
 
@@ -117,65 +84,14 @@ function draw() {
     }
     temporizador ();
     if (segundos > 0) {
-      for ( let i = 0; i < cantB; i++) {
-        barriles (barrX [i], barrY [i]);
-        barrY[i] += barrVel [i];
-        if (colision(xPersonaje, barrX[i], yPersonaje, barrY[i])) {
+      for (let i = 0; i < cantB; i++) {
+        barril (barrilX[i], barrilY[i], anchoBarr, altoBarr);
+        barrilY [i] += barrilVel [i];
+        if ( barrilY [i] > height) {
+          barrilY [i] = random (-500, -200);
+        }
+        if (colision (xPersonaje, barrilX [i], yPersonaje, barrilY [i] )) {
           estado = 5;
-        }
-      }
-    }
-    if (segundos >= 10) {
-      for ( let i = 0; i < cantB; i++) {
-        barriles (barrX2 [i], barrY2 [i]);
-        barrY2[i] += barrVel2 [i];
-        if (colision(xPersonaje, barrX2[i], yPersonaje, barrY2[i])) {
-          estado = 5;
-        }
-      }
-    }
-    if (segundos >= 18) {
-      for ( let i = 0; i < cantB; i++) {
-        barriles (barrX3 [i], barrY3 [i]);
-        barrY3[i] += barrVel3 [i];
-        if (colision(xPersonaje, barrX3[i], yPersonaje, barrY3[i])) {
-          estado = 5;
-        }
-      }
-    }
-    if (segundos >= 28) {
-      for ( let i = 0; i < cantB; i++) {
-        barriles (barrX4 [i], barrY4 [i]);
-        barrY4[i] += barrVel4 [i];
-        if (colision(xPersonaje, barrX4[i], yPersonaje, barrY4[i])) {
-          estado = 5;
-        }
-      }
-      if (segundos >= 35) {
-        for ( let i = 0; i < cantB; i++) {
-          barriles (barrX5 [i], barrY5 [i]);
-          barrY5[i] += barrVel5 [i];
-          if (colision(xPersonaje, barrX5[i], yPersonaje, barrY5[i])) {
-            estado = 5;
-          }
-        }
-      }
-      if (segundos >= 45) {
-        for ( let i = 0; i < 15; i++) {
-          barriles (barrX6 [i], barrY6 [i]);
-          barrY6[i] += barrVel6 [i];
-          if (colision(xPersonaje, barrX6[i], yPersonaje, barrY6[i])) {
-            estado = 5;
-          }
-        }
-      }
-      if (segundos >= 55) {
-        for ( let i = 0; i < 15; i++) {
-          barriles (barrX7 [i], barrY7 [i]);
-          barrY7[i] += barrVel7 [i];
-          if (colision(xPersonaje, barrX7[i], yPersonaje, barrY7[i])) {
-            estado = 5;
-          }
         }
       }
     }
@@ -208,6 +124,7 @@ function instrucciones () {
   text ('Mueve al personaje con las flechas de direccion del teclado', width /2, 150);
   text ('Objetivo : ¡Alcanza la cima sin que te den los barriles!', width/2, 200);
   text ('LLega lo antes posible para lograr las 3 estrellas', width /2, 235);
+  text ('Apreta la tecla M para terminar el juego automaticamente',width / 2, 300);
   rect (20, 350, 80, 30);
   fill(0);
   text ('Atras', 60, 371);
@@ -233,10 +150,10 @@ function temporizador () {
   text ('Tiempo:'+segundos, 740, 390);
 }
 
-function barriles (bx, by) {
+function barril (bx, by, ancho, alto) {
   noStroke ();
   fill (121, 102, 34);
-  rect (bx, by, 20, 20);
+  rect (bx, by, ancho, alto);
 }
 
 function escenario () {
@@ -388,28 +305,10 @@ function keyPressed () {
     num = 1;
     segundos = 0;
     estado = 2;
-    for (let i = 0; i < cantB; i ++) {
-      barrX [i] = random (100, 700);
-      barrY [i] = random (-90, -5);
-      barrVel [i] = random (0.4, 2.3);
-      barrX2 [i] = random (100, 700);
-      barrY2 [i] = random ( -90, -5);
-      barrVel2 [i] = random (0.4, 2.3);
-      barrX3 [i] = random (100, 700);
-      barrY3 [i] = random (-90, -5);
-      barrVel3 [i] = random (0.4, 2.3);
-      barrX4 [i] = random (100, 700);
-      barrY4 [i] = random (-90, -5);
-      barrVel4 [i] = random (0.4, 2.3);
-      barrX5 [i] = random (100, 700);
-      barrY5 [i] = random (-90, -5);
-      barrVel5 [i] = random (0.4, 1.6);
-      barrX6 [i] = random (100, 700);
-      barrY6 [i] = random (-90, -5);
-      barrVel6 [i] = random (0.4, 1);
-      barrX7 [i] = random (100, 700);
-      barrY7 [i] = random (-90, -80);
-      barrVel7 [i] = random (0.2, 0.7);
+    for (let i = 0; i < cantB; i++) {
+      barrilX [i] = i*(anchoBarr + 50);
+      barrilY [i] = random (-300, -100);
+      barrilVel [i] = random (0.5, 2);
     }
   }
   if (key === 'r' && estado === 6) {
@@ -418,29 +317,14 @@ function keyPressed () {
     num = 1;
     segundos = 0;
     estado = 2;
-    for (let i = 0; i < cantB; i ++) {
-      barrX [i] = random (100, 700);
-      barrY [i] = random (-90, -5);
-      barrVel [i] = random (0.4, 2.3);
-      barrX2 [i] = random (100, 700);
-      barrY2 [i] = random ( -90, -5);
-      barrVel2 [i] = random (0.4, 2.3);
-      barrX3 [i] = random (100, 700);
-      barrY3 [i] = random (-90, -5);
-      barrVel3 [i] = random (0.4, 2.3);
-      barrX4 [i] = random (100, 700);
-      barrY4 [i] = random (-90, -5);
-      barrVel4 [i] = random (0.4, 2.3);
-      barrX5 [i] = random (100, 700);
-      barrY5 [i] = random (-90, -5);
-      barrVel5 [i] = random (0.4, 1.6);
-      barrX6 [i] = random (100, 700);
-      barrY6 [i] = random (-90, -5);
-      barrVel6 [i] = random (0.4, 1);
-      barrX7 [i] = random (100, 700);
-      barrY7 [i] = random (-90, -80);
-      barrVel7 [i] = random (0.2, 0.7);
+    for (let i = 0; i < cantB; i++) {
+      barrilX [i] = i*(anchoBarr + 50);
+      barrilY [i] = random (-300, -100);
+      barrilVel [i] = random (0.5, 2);
     }
+  }
+  if (key === 'm' && estado === 2) {
+    estado = 1;
   }
 }
 
@@ -451,28 +335,10 @@ function mousePressed () {
     num = 1;
     segundos = 0;
     estado = 2;
-    for (let i = 0; i < cantB; i ++) {
-      barrX [i] = random (100, 700);
-      barrY [i] = random (-90, -5);
-      barrVel [i] = random (0.4, 2.3);
-      barrX2 [i] = random (100, 700);
-      barrY2 [i] = random ( -90, -5);
-      barrVel2 [i] = random (0.4, 2.3);
-      barrX3 [i] = random (100, 700);
-      barrY3 [i] = random (-90, -5);
-      barrVel3 [i] = random (0.4, 2.3);
-      barrX4 [i] = random (100, 700);
-      barrY4 [i] = random (-90, -5);
-      barrVel4 [i] = random (0.4, 2.3);
-      barrX5 [i] = random (100, 700);
-      barrY5 [i] = random (-90, -5);
-      barrVel5 [i] = random (0.4, 1.6);
-      barrX6 [i] = random (100, 700);
-      barrY6 [i] = random (-90, -5);
-      barrVel6 [i] = random (0.4, 1);
-      barrX7 [i] = random (100, 700);
-      barrY7 [i] = random (-90, -80);
-      barrVel7 [i] = random (0.2, 0.7);
+    for (let i = 0; i < cantB; i++) {
+      barrilX [i] = i*(anchoBarr + 50);
+      barrilY [i] = random (-300, -100);
+      barrilVel [i] = random (0.5, 2);
     }
     estado = 2;
   } else if (zonaMouse (345, 455, 260, 290) && estado === 1) {
