@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond&family=Paytone+One&display=swap');
+
+body h1,
+ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    background-color: rgb(9, 9, 34);
+    font-family: 'EB Garamond', serif;
+}
+
+h1,
+h2 {
+    font-family: 'Paytone One', sans-serif;
+}
+
+h2 {
+    background-color: rgb(37, 53, 77);
+    padding: 10px;
+}
+
+div {
+    width: 800px;
+    max-width: 95%;
+    margin: 0 auto;
+}
+
+header {
+    color: white;
+    height: 100px;
+    text-align: center;
+    padding-top: 50px;
+
+}
+
+nav {
+    border-bottom: 3px solid rgb(150, 150, 150);
+}
+
+article {
+    color: white;
+    padding: 5px;
+    margin: 5px;
+}
+
+footer {
+    color: rgb(235, 235, 235);
+    background-color: rgb(14, 14, 14);
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+}
+
+.adaptar {
+    width: 100%;
+    height: auto;
+    padding: 3px;
+}
+
+.centrar {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.achicar {
+    width: 3%;
+    margin-left: 2px;
+    height: auto;
+}
+
+nav li {
+    display: inline-block;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    background-color: rgb(88, 139, 122);
+    padding: 8px;
+    margin: 5px;
+    display: inline-block;
+}
+
+a p {
+    color: rgb(167, 41, 41);
+}
+
+nav a:hover {
+    color: rgb(88, 139, 122);
+    background-color: white;
+}
+
+html {
+    scroll-behavior: smooth;
+}
